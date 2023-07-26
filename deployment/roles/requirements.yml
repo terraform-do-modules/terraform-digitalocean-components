@@ -1,3 +1,0 @@
-#From Ansible Galaxy
-- src: clouddrove.ansible_role_common
-  name: common
