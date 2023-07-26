@@ -1,0 +1,44 @@
+name: 'Ansible deploy'
+on:
+  workflow_dispatch:
+    inputs:
+      filename:
+        description: 'Please enter ansible filename [deployment.yml]'
+        required: true
+        default: 'deployment.yml'
+      tags:
+        description: 'Please enter tagname [basic, nginx]'
+        required: true
+        default: 'basic'
+
+jobs:
+  anisble-deploy:
+    name: 'Ansible Deploy'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@master
+
+      - name: Creating .ssh folder and permitting it with 777
+        run: |
+          sudo mkdir -p /home/runner/.ssh
+          cd /home/runner && sudo ls -a
+          sudo chmod 777 /home/runner/.ssh
+          cd /home/runner
+          pwd
+          cd /home/runner/.ssh && touch id_rsa
+          sudo chmod 777 id_rsa
+      - name: Copy the key data from secrets to id_rsa file
+        run: |
+          cd /home/runner/.ssh
+          echo "${{secrets.PEM_KEY}}" > id_rsa
+          cat id_rsa && sudo chmod 600 /home/runner/.ssh/id_rsa
+      - name: check ansible connectivity
+        run: ansible all -m ping
+      - name: fetch ansible roles
+        run: make ansible-galaxy
+      - name: Ansible deployment for ${{ github.event.inputs.filename }}
+        id: ansible
+        run: |
+          cd deployment/
+          ansible-playbook ${{ github.event.inputs.filename }} --tags=${{ github.event.inputs.tags }}

@@ -1,0 +1,32 @@
+name: 'Terraform manual deploy'
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Please enter environment [dev,ops,prod]'
+        required: true
+        default: 'dev'
+      region:
+        description: 'Please enter region [ca-central-1, eu-west-1] '
+        required: true
+        default: 'ca-central-1'
+      workspace:
+        description: 'Please enter workspace [base, common]'
+        required: true
+        default: 'common'
+
+jobs:
+  terraform-deploy:
+    name: 'Terraform- Deploy (Apply)'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@master
+
+      - name: 'Terraform apply'
+        run: |
+          cd terraform/_tools
+          unset AWS_ACCESS_KEY_ID && unset AWS_SECRET_ACCESS_KEY && unset AWS_DEFAULT_REGION
+          export AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY }} && export AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          sudo chmod +x apply.sh
+          ./apply.sh ${{ github.event.inputs.environment }} ${{ github.event.inputs.region }} ${{ github.event.inputs.workspace }} ${{ secrets.ROLE_ARN }}

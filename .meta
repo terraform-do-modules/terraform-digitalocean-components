@@ -1,0 +1,5 @@
+{
+  "projects": {
+    ".genie": "git@github.com:clouddrove/genie.git"
+  }
+}

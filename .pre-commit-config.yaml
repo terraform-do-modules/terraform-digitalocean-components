@@ -1,0 +1,23 @@
+repos:
+- repo: git://github.com/antonbabenko/pre-commit-terraform
+  rev: v1.45.0 # Use the ref you want to point at
+  hooks:
+  - id: terraform_fmt
+  - id: terraform_validate
+- repo: git://github.com/pre-commit/pre-commit-hooks
+  rev: v3.4.0 # Use the ref you want to point at
+  hooks:
+    - id: end-of-file-fixer
+    - id: trailing-whitespace
+    - id: mixed-line-ending
+    - id: check-byte-order-marker
+    - id: check-executables-have-shebangs
+    - id: check-merge-conflict
+    - id: debug-statements
+    - id: check-yaml
+    - id: check-added-large-files
+- repo: https://github.com/ansible/ansible-lint.git
+  rev: v5.0.0a0
+  hooks:
+    - id: ansible-lint
+      files: \.(yaml|yml)$

@@ -1,0 +1,63 @@
+name: 'Terraform manual plan'
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Please enter environment [dev,ops,prod]'
+        required: true
+        default: 'dev'
+      region:
+        description: 'Please enter region [ca-central-1, eu-west-1]'
+        required: true
+        default: 'ca-central-1'
+      workspace:
+        description: 'Please enter workspace [base, common]'
+        required: true
+        default: 'common'
+
+jobs:
+  terraform-pull-request:
+    name: 'Terraform- Fmt, Init, validate and Plan'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@master
+
+      - name: 'Install dependancies'
+        run: |
+          sudo apt-get install jq awscli -y
+          alias convert_report="jq -r '([.resource_changes[]?.change.actions?]|flatten)|{\"create\":(map(select(.==\"create\"))|length),\"update\":(map(select(.==\"update\"))|length),\"delete\":(map(select(.==\"delete\"))|length)}'"
+      - name: 'Terraform Format fmt'
+        run: |
+          cd terraform/${{ github.event.inputs.region }}/${{ github.event.inputs.workspace }}
+          terraform fmt --diff
+
+      - name: 'Terraform validate'
+        run: |
+          cd terraform/_tools
+          sudo chmod +x validate.sh
+          unset AWS_ACCESS_KEY_ID && unset AWS_SECRET_ACCESS_KEY && unset AWS_DEFAULT_REGION
+          export AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY }} && export AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          ./validate.sh ${{ github.event.inputs.environment }} ${{ github.event.inputs.region }} ${{ github.event.inputs.workspace }} ${{ secrets.ROLE_ARN }}
+
+      - name: 'Infra Cost'
+        run: |
+          cd terraform/_tools
+          sudo chmod +x infracost.sh
+          curl -s -L https://github.com/infracost/infracost/releases/latest/download/infracost-linux-amd64.tar.gz | tar xz -C /tmp
+          sudo mv /tmp/infracost-linux-amd64 /usr/local/bin/infracost
+          export INFRACOST_API_KEY=${{ secrets.INFRACOST_API_KEY }}
+          unset AWS_ACCESS_KEY_ID && unset AWS_SECRET_ACCESS_KEY && unset AWS_DEFAULT_REGION
+          export AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY }} && export AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          ./infracost.sh ${{ github.event.inputs.environment }} ${{ github.event.inputs.region }} ${{ github.event.inputs.workspace }} ${{ secrets.ROLE_ARN }}
+
+      - name: 'Terraform plan'
+        run: |
+          cd terraform/_tools
+          sudo chmod +x plan.sh
+          unset AWS_ACCESS_KEY_ID && unset AWS_SECRET_ACCESS_KEY && unset AWS_DEFAULT_REGION
+          export AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY }} && export AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          ./plan.sh ${{ github.event.inputs.environment }} ${{ github.event.inputs.region }} ${{ github.event.inputs.workspace }} ${{ secrets.ROLE_ARN }} $PLAN $JSON_PLAN_FILE ${convert_report}
+        env:
+          PLAN: plan.tfplan
+          JSON_PLAN_FILE: tfplan.json

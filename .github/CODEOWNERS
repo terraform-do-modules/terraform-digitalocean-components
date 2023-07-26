@@ -1,0 +1,17 @@
+# Use this file to define individuals or teams that are responsible for code in a repository.
+# Read more: <https://help.github.com/articles/about-codeowners/>
+#
+# Order is important: the last matching pattern takes the most precedence
+
+# These owners will be the default owners for everything
+*             @clouddrove/engineering @clouddrove/contributors
+
+# Cloud Posse must review any changes to Makefiles
+**/Makefile   @clouddrove/engineering
+**/Makefile.* @clouddrove/engineering
+
+# Cloud Posse must review any changes to GitHub actions
+.github/*     @clouddrove/engineering
+
+# Cloud Posse must review any changes to standard context definition
+**/context.tf   @clouddrove/engineering
