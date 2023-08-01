@@ -10,7 +10,8 @@ locals {
 ## container registry module call
 ##------------------------------------------------
 module "container-registry" {
-  source                 = "./../../"
+  source                 = "terraform-do-modules/container-registry/digitalocean"
+  version                = "1.0.0"
   name                   = local.name
   environment            = local.environment
   region                 = local.region

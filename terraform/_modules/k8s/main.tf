@@ -22,7 +22,8 @@ module "vpc" {
 ## Kubernetes module call
 ##------------------------------------------------
 module "cluster" {
-  source          = "./../../"
+  source          = "terraform-do-modules/cluster/digitalocean"
+  version         = "1.0.0"
   name            = local.name
   environment     = local.environment
   region          = local.region

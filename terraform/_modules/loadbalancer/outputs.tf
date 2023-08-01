@@ -2,6 +2,6 @@
 # Outputs
 # ------------------------------------------------------------------------------
 output "id" {
-  value       = module.load-balancer[*].id
+  value       = module.load-balancer.id
   description = "The ID of the Load Balancer."
 }

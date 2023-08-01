@@ -17,7 +17,8 @@ module "spaces" {
 ##------------------------------------------------
 module "cdn" {
   depends_on       = [module.spaces]
-  source           = "./../../"
+  source           = "terraform-do-modules/cdn/digitalocean"
+  version          = "1.0.0"
   origin           = module.spaces.bucket_domain_name
   ttl              = 3600
   custom_domain    = ""

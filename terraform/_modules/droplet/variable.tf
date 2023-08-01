@@ -15,15 +15,26 @@ variable "region" {
   default     = "blr1"
   description = "The region to create VPC, like ``blr1``"
 }
-
-variable "description" {
-  type        = string
-  default     = "VPC"
-  description = "A free-form text field up to a limit of 255 characters to describe the VPC."
-}
-
-variable "ip_range" {
+variable "vpc_id" {
   type        = string
   default     = ""
-  description = "The range of IP addresses for the VPC in CIDR notation. Network ranges cannot overlap with other networks in the same account and must be in range of private addresses as defined in RFC1918. It may not be larger than /16 or smaller than /24."
+  description = "The ID of the VPC where the Droplet will be located."
+}
+
+variable "ssh_key" {
+  type        = string
+  default     = ""
+  description = "SSH key"
+}
+
+variable "inbound_rules" {
+  type        = any
+  default     = []
+  description = "List of objects that represent the configuration of each inbound rule."
+}
+
+variable "user_data" {
+  type        = string
+  default     = null
+  description = "(Optional) A string of the desired User Data for the Droplet."
 }

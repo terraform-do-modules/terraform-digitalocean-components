@@ -16,14 +16,14 @@ variable "region" {
   description = "The region to create VPC, like ``blr1``"
 }
 
-variable "description" {
+variable "acl" {
   type        = string
-  default     = "VPC"
-  description = "A free-form text field up to a limit of 255 characters to describe the VPC."
+  default     = null
+  description = "Canned ACL applied on bucket creation (private or public-read)."
 }
 
-variable "ip_range" {
-  type        = string
-  default     = ""
-  description = "The range of IP addresses for the VPC in CIDR notation. Network ranges cannot overlap with other networks in the same account and must be in range of private addresses as defined in RFC1918. It may not be larger than /16 or smaller than /24."
+variable "force_destroy" {
+  type        = bool
+  default     = false
+  description = "Unless true, the bucket will only be destroyed if empty (Defaults to false)."
 }
