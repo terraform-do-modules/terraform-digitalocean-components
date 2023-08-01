@@ -1,19 +1,13 @@
-provider "digitalocean" {}
-
-locals {
-  name        = "app"
-  environment = "test"
-  region      = "syd1"
-}
-
 ##------------------------------------------------
 ## container registry module call
 ##------------------------------------------------
 module "container-registry" {
   source                 = "terraform-do-modules/container-registry/digitalocean"
   version                = "1.0.0"
-  name                   = local.name
-  environment            = local.environment
-  region                 = local.region
-  subscription_tier_slug = "starter"
+  name                   = var.name
+  environment            = var.environment
+  label_order            = var.label_order
+  region                 = var.region
+  enabled                = var.enabled
+  subscription_tier_slug = var.subscription_tier_slug
 }
