@@ -203,7 +203,7 @@ module "uptime-alert" {
   ####
   notifications = [
     {
-      email = ["deepak.verma@clouddrove.com"]
+      email = ["hello@clouddrove.com"]
       slack = [
         {
           channel = "testing"
