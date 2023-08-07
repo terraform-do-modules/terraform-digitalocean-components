@@ -1,63 +1,21 @@
-name: 'Terraform manual plan'
+name: terraform workflow
+permissions: write-all
 on:
+  push:
+    branches: [ master ]
+  pull_request:
   workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Please enter environment [dev,ops,prod]'
-        required: true
-        default: 'dev'
-      region:
-        description: 'Please enter region [ca-central-1, eu-west-1]'
-        required: true
-        default: 'ca-central-1'
-      workspace:
-        description: 'Please enter workspace [base, common]'
-        required: true
-        default: 'common'
-
 jobs:
-  terraform-pull-request:
-    name: 'Terraform- Fmt, Init, validate and Plan'
-    runs-on: ubuntu-latest
-    steps:
-      - name: 'Checkout'
-        uses: actions/checkout@master
-
-      - name: 'Install dependancies'
-        run: |
-          sudo apt-get install jq awscli -y
-          alias convert_report="jq -r '([.resource_changes[]?.change.actions?]|flatten)|{\"create\":(map(select(.==\"create\"))|length),\"update\":(map(select(.==\"update\"))|length),\"delete\":(map(select(.==\"delete\"))|length)}'"
-      - name: 'Terraform Format fmt'
-        run: |
-          cd terraform/${{ github.event.inputs.region }}/${{ github.event.inputs.workspace }}
-          terraform fmt --diff
-
-      - name: 'Terraform validate'
-        run: |
-          cd terraform/_tools
-          sudo chmod +x validate.sh
-          unset AWS_ACCESS_KEY_ID && unset AWS_SECRET_ACCESS_KEY && unset AWS_DEFAULT_REGION
-          export AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY }} && export AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          ./validate.sh ${{ github.event.inputs.environment }} ${{ github.event.inputs.region }} ${{ github.event.inputs.workspace }} ${{ secrets.ROLE_ARN }}
-
-      - name: 'Infra Cost'
-        run: |
-          cd terraform/_tools
-          sudo chmod +x infracost.sh
-          curl -s -L https://github.com/infracost/infracost/releases/latest/download/infracost-linux-amd64.tar.gz | tar xz -C /tmp
-          sudo mv /tmp/infracost-linux-amd64 /usr/local/bin/infracost
-          export INFRACOST_API_KEY=${{ secrets.INFRACOST_API_KEY }}
-          unset AWS_ACCESS_KEY_ID && unset AWS_SECRET_ACCESS_KEY && unset AWS_DEFAULT_REGION
-          export AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY }} && export AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          ./infracost.sh ${{ github.event.inputs.environment }} ${{ github.event.inputs.region }} ${{ github.event.inputs.workspace }} ${{ secrets.ROLE_ARN }}
-
-      - name: 'Terraform plan'
-        run: |
-          cd terraform/_tools
-          sudo chmod +x plan.sh
-          unset AWS_ACCESS_KEY_ID && unset AWS_SECRET_ACCESS_KEY && unset AWS_DEFAULT_REGION
-          export AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY }} && export AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          ./plan.sh ${{ github.event.inputs.environment }} ${{ github.event.inputs.region }} ${{ github.event.inputs.workspace }} ${{ secrets.ROLE_ARN }} $PLAN $JSON_PLAN_FILE ${convert_report}
-        env:
-          PLAN: plan.tfplan
-          JSON_PLAN_FILE: tfplan.json
+  prod:
+    uses: clouddrove/github-shared-workflows/.github/workflows/terraform_workflow.yml@master
+    with:
+        provider: digitalocean
+        working_directory: terraform/sandbox/blr1/ # Specify terraform code directory in repo
+        # var_file:           # Name of tfvar file e.g "variable.tfvar"
+        approvers: d4kverma # Assignee name for approve apply or destroy step
+        terraform_version: 1.5.4 # Specify terraform version e.g 1.3.6
+        # destroy:            # If the value is set to true, the workflow proceeds to the destroy step. However, the default value is false
+    secrets:
+      DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DO_TOKEN }}     # Digitalocean token
+    #   SPACES_ACCESS_KEY_ID:     # Provide spaces access key id if required
+    #   SPACES_SECRET_ACCESS_KEY: # Provide spaces secret access key if required

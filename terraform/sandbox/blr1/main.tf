@@ -203,7 +203,7 @@ module "uptime-alert" {
   ####
   notifications = [
     {
-      email = ["hello@clouddrove.com"]
+      email = ["deepak.verma@clouddrove.com"]
       slack = [
         {
           channel = "testing"
@@ -233,4 +233,40 @@ module "cdn" {
   ttl              = 3600
   custom_domain    = ""
   certificate_name = ""
+}
+
+##------------------------------------------------
+## mysql database cluster module call
+##------------------------------------------------
+module "mysql" {
+  source                       = "./../../_modules/database"
+  name                         = local.name
+  environment                  = local.environment
+  region                       = local.region
+  cluster_engine               = "mysql"
+  cluster_version              = "8"
+  cluster_size                 = "db-s-1vcpu-1gb"
+  cluster_node_count           = 1
+  cluster_private_network_uuid = module.vpc.id
+  mysql_sql_mode               = "ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES,ALLOW_INVALID_DATES"
+  cluster_maintenance = {
+    maintenance_hour = "02:00:00"
+    maintenance_day  = "saturday"
+  }
+  databases = ["testdb"]
+
+  users = [
+    {
+      name              = "test",
+      mysql_auth_plugin = "mysql_native_password"
+    }
+  ]
+
+  create_firewall = false
+  firewall_rules = [
+    {
+      type  = "ip_addr"
+      value = "0.0.0.0"
+    }
+  ]
 }
