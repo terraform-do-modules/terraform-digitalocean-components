@@ -6,19 +6,21 @@ By default this creates many digital ocean component listed in moudle directory.
 
 Here is Digital Ocean Cloud Component created using this repo. 
 
-- [VPC](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/vpc) 
-- [DROPLET](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/droplet)
-- [CDN](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/cdn)
-- [CERTIFICATE](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/certificate)
-- [DATABASE](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/database)
-- [DOMAIN](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/doamin)
-- [DROPLET](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/droplet)
-- [SPACES](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/spaces)
-- [KUBERNETES](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/kubernetes)
-- [CONTAINER-REGISTRY](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/container-registry)
-- [FIREWALL](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/firewall)
-- [MONITORING](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/monitoring)
-- [LOADBALANCER](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/loadbalancer)
+|COMPONENT           |PATH  | OFFICAL-URL|
+|:-------------------|:-----|:---------|
+|VPC|[terraform/_modules/vpc](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/vpc)|[terraform-digitalocean-vpc](https://github.com/terraform-do-modules/terraform-digitalocean-vpc)|
+|DROPLET|[terraform/_modules/droplet](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/droplet)|[terraform-digitalocean-droplet](https://github.com/terraform-do-modules/terraform-digitalocean-droplet)|
+|CDN|[terraform/_modules/cdn](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/cdn)|[terraform-digitalocean-cdn](https://github.com/terraform-do-modules/terraform-digitalocean-cdn)|
+|CERTIFICATE|[terraform/_modules/certificate](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/certificate)|[terraform-digitalocean-certificate](https://github.com/terraform-do-modules/terraform-digitalocean-certificate)|
+|DATABASE|[terraform/_modules/database](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/database)|[terraform-digitalocean-database](https://github.com/terraform-do-modules/terraform-digitalocean-database)|
+|DOMAIN|[terraform/_modules/doamin](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/domain)|[terraform-digitalocean-domain](https://github.com/terraform-do-modules/terraform-digitalocean-domain)|
+|SPACES|[terraform/_modules/spaces](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/spaces)|[terraform-digitalocean-spaces](https://github.com/terraform-do-modules/terraform-digitalocean-spaces)|
+|KUBERNETES|[terraform/_modules/kubernetes](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/kubernetes)|[terraform-digitalocean-kubernetes](https://github.com/terraform-do-modules/terraform-digitalocean-kubernetes)|
+|CONTAINER-REGISTRY|[terraform/_modules/container-registry](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/container-registry)|[terraform-digitalocean-container-registry](https://github.com/terraform-do-modules/terraform-digitalocean-container-registry)|
+|FIREWALL|[terraform/_modules/firewall](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/firewall)|[terraform-digitalocean-firewall](https://github.com/terraform-do-modules/terraform-digitalocean-firewall)|
+|MONITORING|[terraform/_modules/monitoring](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/monitoring)|[terraform-digitalocean-monitoring](https://github.com/terraform-do-modules/terraform-digitalocean-monitoring)|
+|LOADBALANCER|[terraform/_modules/loadbalancer](https://github.com/terraform-do-modules/terraform-digitalocean-components/tree/master/terraform/_modules/loadbalancer)|[terraform-digitalocean-loadbalancer](https://github.com/terraform-do-modules/terraform-digitalocean-loadbalancer)|
+
 
 ## To execute
 - follow this directory path
