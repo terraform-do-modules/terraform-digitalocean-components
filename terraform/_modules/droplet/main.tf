@@ -6,6 +6,7 @@ module "droplet" {
   version     = "1.0.0"
   name        = var.name
   environment = var.environment
+  enabled     = var.enabled
   region      = var.region
   vpc_uuid    = var.vpc_id
   ssh_key     = var.ssh_key

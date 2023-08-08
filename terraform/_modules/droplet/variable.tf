@@ -15,6 +15,13 @@ variable "region" {
   default     = "blr1"
   description = "The region to create VPC, like ``blr1``"
 }
+
+variable "enabled" {
+  type        = bool
+  default     = true
+  description = "Whether to create the resources. Set to `false` to prevent the module from creating any resources."
+}
+
 variable "vpc_id" {
   type        = string
   default     = ""
