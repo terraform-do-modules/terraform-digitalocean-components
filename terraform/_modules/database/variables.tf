@@ -12,17 +12,6 @@ variable "environment" {
   description = "Environment (e.g. `prod`, `dev`, `staging`)."
 }
 
-variable "label_order" {
-  type        = list(any)
-  default     = ["name", "environment"]
-  description = "Label order, e.g. `name`,`application`."
-}
-variable "managedby" {
-  type        = string
-  default     = "terraform-do-modules"
-  description = "ManagedBy, eg 'terraform-do-modules' or 'hello@clouddrove.com'"
-}
-
 variable "enabled" {
   type        = bool
   default     = true
@@ -54,12 +43,6 @@ variable "region" {
   description = "DigitalOcean region where the cluster will reside"
 }
 
-variable "replica_region" {
-  type        = string
-  default     = null
-  description = "DigitalOcean region where the replica will reside"
-}
-
 variable "cluster_node_count" {
   type        = number
   default     = 1
@@ -72,12 +55,6 @@ variable "cluster_private_network_uuid" {
   description = "The ID of the VPC where the database cluster will be located"
 }
 
-variable "redis_eviction_policy" {
-  type        = string
-  default     = null
-  description = "A string specifying the eviction policy for a Redis cluster. Valid values are: noeviction, allkeys_lru, allkeys_random, volatile_lru, volatile_random, or volatile_ttl"
-}
-
 variable "mysql_sql_mode" {
   type        = string
   default     = null
@@ -85,11 +62,6 @@ variable "mysql_sql_mode" {
 }
 
 variable "cluster_maintenance" {
-  type        = map(string)
-  default     = null
-  description = "The day and the start hour of the maintenance window policy"
-}
-variable "backup_restore" {
   type        = map(string)
   default     = null
   description = "The day and the start hour of the maintenance window policy"
@@ -107,18 +79,6 @@ variable "users" {
   description = "A list of users in the cluster"
 }
 
-variable "create_pools" {
-  type        = bool
-  default     = false
-  description = "Controls if pools should be created"
-}
-
-variable "pools" {
-  type        = list(map(string))
-  default     = null
-  description = "A list of connection pools in the cluster"
-}
-
 variable "create_firewall" {
   type        = bool
   default     = false
@@ -129,21 +89,4 @@ variable "firewall_rules" {
   type        = list(map(string))
   default     = []
   description = "List of firewall rules associated with the cluster"
-}
-variable "project_id" {
-  type        = string
-  default     = null
-  description = "The ID of the project that the database cluster is assigned to. If excluded when creating a new database cluster, it will be assigned to your default project."
-}
-
-variable "replica_size" {
-  type        = string
-  default     = "db-s-1vcpu-1gb"
-  description = "Database Droplet size associated with the replica (ex. db-s-1vcpu-1gb). Note that when resizing an existing replica, its size can only be increased. Decreasing its size is not supported."
-}
-
-variable "replica_enable" {
-  type        = bool
-  default     = false
-  description = "Flag to control the resources creation."
 }

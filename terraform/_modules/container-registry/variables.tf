@@ -18,12 +18,6 @@ variable "label_order" {
   description = "Label order, e.g. `name`,`application`."
 }
 
-variable "managedby" {
-  type        = string
-  default     = "terraform-do-modules"
-  description = "ManagedBy, eg 'terraform-do-modules' or 'hello@clouddrove.com'"
-}
-
 #Module      : Container Registry
 variable "subscription_tier_slug" {
   type        = string

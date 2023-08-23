@@ -12,18 +12,6 @@ variable "environment" {
   description = "Environment (e.g. `prod`, `dev`, `staging`)."
 }
 
-variable "label_order" {
-  type        = list(any)
-  default     = ["name", "environment"]
-  description = "Label order, e.g. `name`."
-}
-
-variable "managedby" {
-  type        = string
-  default     = "terraform-do-modules"
-  description = "ManagedBy, eg 'terraform-do-modules'"
-}
-
 variable "target_url" {
   type        = list(any)
   default     = []
@@ -34,17 +22,6 @@ variable "type" {
   type        = list(string)
   default     = []
   description = "The type of health check to perform: 'ping' 'http' 'https'."
-}
-variable "regions" {
-  type        = list(string)
-  default     = ["us_east", "us_west", "eu_west", "se_asia"]
-  description = "An array containing the selected regions to perform healthchecks from: 'us_east', 'us_west', 'eu_west', 'se_asia''"
-}
-
-variable "enable" {
-  type        = bool
-  default     = true
-  description = "A boolean value indicating whether the check is enabled/disabled."
 }
 
 variable "enabled" {
@@ -57,12 +34,6 @@ variable "alert_type" {
   type        = list(any)
   default     = ["down_global"]
   description = "The type of health check to perform. Must be one of latency, down, down_global or ssl_expiry."
-}
-
-variable "threshold" {
-  type        = list(any)
-  default     = [1]
-  description = "The threshold at which the alert will enter a trigger state. The specific threshold is dependent on the alert type."
 }
 
 variable "comparison" {
@@ -81,9 +52,4 @@ variable "notifications" {
   type        = list(any)
   default     = []
   description = "The notification settings for a trigger alert."
-}
-
-variable "resource_alerts" {
-  type    = map(any)
-  default = {}
 }

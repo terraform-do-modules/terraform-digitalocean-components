@@ -6,6 +6,7 @@ module "mysql" {
   version                      = "1.0.0"
   name                         = var.name
   environment                  = var.environment
+  enabled                      = var.enabled
   region                       = var.region
   cluster_engine               = var.cluster_engine
   cluster_version              = var.cluster_version

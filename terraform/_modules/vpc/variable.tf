@@ -16,12 +16,6 @@ variable "region" {
   description = "The region to create VPC, like ``blr1``"
 }
 
-variable "description" {
-  type        = string
-  default     = "VPC"
-  description = "A free-form text field up to a limit of 255 characters to describe the VPC."
-}
-
 variable "ip_range" {
   type        = string
   default     = ""
