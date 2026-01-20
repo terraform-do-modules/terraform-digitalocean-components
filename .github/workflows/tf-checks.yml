@@ -1,0 +1,17 @@
+name: tf-checks
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+  workflow_dispatch:
+jobs:
+  complete-do-module:
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@master
+    with:
+      working_directory: './terraform/sandbox/blr1/'
+
+# Seperate Job for TFlint workflow call
+  tf-lint:
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-lint.yml@master
+    secrets:
+      GITHUB: ${{ secrets.GITHUB }}

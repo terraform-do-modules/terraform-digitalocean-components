@@ -10,7 +10,7 @@ jobs:
     uses: clouddrove/github-shared-workflows/.github/workflows/terraform_workflow.yml@master
     with:
         provider: digitalocean
-        working_directory: terraform/sandbox/blr1/ # Specify terraform code directory in repo
+        working_directory: terraform/sandbox/blr1 # Specify terraform code directory in repo
         # var_file:           # Name of tfvar file e.g "variable.tfvar"
         approvers: d4kverma # Assignee name for approve apply or destroy step
         terraform_version: 1.5.4 # Specify terraform version e.g 1.3.6

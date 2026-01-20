@@ -28,10 +28,14 @@ variable "vpc_id" {
   description = "The ID of the VPC where the Droplet will be located."
 }
 
-variable "ssh_key" {
-  type        = string
-  default     = ""
-  description = "SSH key"
+variable "ssh_keys" {
+  description = "SSH keys to be created"
+  type = map(object({
+    name       = optional(string)
+    public_key = optional(string)
+  }))
+  default = {
+  }
 }
 
 variable "inbound_rules" {
