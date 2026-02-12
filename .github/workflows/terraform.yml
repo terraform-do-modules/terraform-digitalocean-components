@@ -1,9 +1,6 @@
 name: terraform workflow
 permissions: write-all
 on:
-  push:
-    branches: [ master ]
-  pull_request:
   workflow_dispatch:
 jobs:
   prod:
