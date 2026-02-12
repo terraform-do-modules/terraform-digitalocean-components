@@ -6,8 +6,9 @@ on:
   workflow_dispatch:
 jobs:
   complete-do-module:
-    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@master
+    uses: clouddrove/github-shared-workflows/.github/workflows/stf-checks.yml@c615ea7ef3e5beba98a335bf9acce8e67e03c755
     with:
+      provider: digitalocean
       working_directory: './terraform/sandbox/blr1/'
 
 # Seperate Job for TFlint workflow call
