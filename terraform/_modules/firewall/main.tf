@@ -3,7 +3,7 @@
 ##------------------------------------------------
 module "firewall" {
   source        = "terraform-do-modules/firewall/digitalocean"
-  version       = "1.0.0"
+  version       = "1.0.2"
   enabled       = var.enabled
   name          = var.name
   environment   = var.environment
