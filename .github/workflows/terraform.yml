@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 jobs:
   prod:
-    uses: clouddrove/github-shared-workflows/.github/workflows/tf-workflow.yml@1754bbe224200aa1d820cdf795d42de54b34245f
+    uses: clouddrove/github-shared-workflows/.github/workflows/terraform_workflow.yml@master
     with:
         provider: digitalocean
         working_directory: terraform/sandbox/blr1 # Specify terraform code directory in repo
