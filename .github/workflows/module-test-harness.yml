@@ -1,0 +1,15 @@
+name: Module Test Harness
+
+on:
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  complete-example:
+    uses: clouddrove/github-shared-workflows/.github/workflows/stf-checks.yml@bd958ead76ac7c72acf4976c244c47eef89c84f7
+    with:
+      provider: digitalocean
+      working_directory: ./terraform/sandbox/
