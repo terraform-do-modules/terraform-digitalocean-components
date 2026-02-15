@@ -1,0 +1,8 @@
+name: tf-lint
+on:
+  pull_request:
+jobs:
+  tf-lint:
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-lint.yml@master
+    secrets:
+      GITHUB: ${{ secrets.GITHUB }}
