@@ -3,7 +3,7 @@
 ##------------------------------------------------
 module "container-registry" {
   source                 = "terraform-do-modules/container-registry/digitalocean"
-  version                = "1.0.3"
+  version                = "1.0.4"
   name                   = var.name
   environment            = var.environment
   label_order            = var.label_order
