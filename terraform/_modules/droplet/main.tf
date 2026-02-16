@@ -3,7 +3,7 @@
 ##------------------------------------------------
 module "droplet" {
   source      = "terraform-do-modules/droplet/digitalocean"
-  version     = "1.0.3"
+  version     = "1.0.4"
   name        = var.name
   environment = var.environment
   enabled     = var.enabled
