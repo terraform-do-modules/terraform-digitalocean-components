@@ -3,7 +3,7 @@
 ##------------------------------------------------
 module "uptime-alert" {
   source      = "terraform-do-modules/monitoring/digitalocean"
-  version     = "1.0.1"
+  version     = "1.0.2"
   name        = var.name
   enabled     = var.enabled
   environment = var.environment
