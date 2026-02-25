@@ -6,13 +6,13 @@ on:
   workflow_dispatch:
 jobs:
   complete-do-module:
-    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@62909fc10e105bba5cba4ff73b03c020b97789d4
+    uses: clouddrove/github-shared-workflows/.github/workflows/stf-checks.yml@521761c1a5cf68d919980a2ed84b755182aeabfe # pinned to latest
     with:
       provider: digitalocean
       working_directory: './terraform/sandbox/blr1/'
 
-# Seperate Job for TFlint workflow call
+# Separate job for TFlint workflow call
   tf-lint:
-    uses: clouddrove/github-shared-workflows/.github/workflows/tf-lint.yml@master
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-lint.yml@62909fc10e105bba5cba4ff73b03c020b97789d4 # pinned to latest
     secrets:
       GITHUB: ${{ secrets.GITHUB }}

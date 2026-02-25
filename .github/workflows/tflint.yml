@@ -1,6 +1,11 @@
-name: tf-lint
+name: tflint
+
 on:
+  push:
+    branches: [ master ]
   pull_request:
+  workflow_dispatch:
+
 jobs:
   tf-lint:
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-lint.yml@master
