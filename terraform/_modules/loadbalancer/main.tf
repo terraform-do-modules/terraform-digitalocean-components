@@ -3,7 +3,7 @@
 ##------------------------------------------------
 module "load-balancer" {
   source      = "terraform-do-modules/load-balancer/digitalocean"
-  version     = "1.0.4"
+  version     = "1.0.5"
   enabled     = var.enabled
   name        = var.name
   environment = var.environment
