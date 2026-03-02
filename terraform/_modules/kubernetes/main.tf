@@ -3,7 +3,7 @@
 ##------------------------------------------------
 module "kubernetes" {
   source             = "terraform-do-modules/kubernetes/digitalocean"
-  version            = "1.1.5"
+  version            = "1.1.6"
   name               = var.name
   environment        = var.environment
   region             = var.region
