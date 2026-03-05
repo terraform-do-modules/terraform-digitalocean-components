@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 jobs:
   complete-do-module:
-    uses: clouddrove/github-shared-workflows/.github/workflows/stf-checks.yml@f6cad30db3bfad5fc248a08ab65ac82eb8dbcb82 # pinned to latest
+    uses: clouddrove/github-shared-workflows/.github/workflows/stf-checks.yml@74df2ef7327ca06f5f7ee4cc7727a6e8b87f0959 # pinned to latest
     with:
       provider: digitalocean
       working_directory: './terraform/sandbox/blr1/'
