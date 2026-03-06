@@ -11,7 +11,11 @@ on:
 jobs:
   pr-validation:
     if: github.actor != 'dependabot[bot]'
-    uses: clouddrove/github-shared-workflows/.github/workflows/pr_checks.yml@2.1.0 # pinned to latest
-    secrets: inherit
+    uses: clouddrove/github-shared-workflows/.github/workflows/pr-checks.yml@2.1.0
     with:
-      subjectPattern: '^.+$'
+      types: ${{ inputs.types }}
+      requireScope: ${{ inputs.requireScope }}
+      subjectPattern: ${{ inputs.subjectPattern }}
+      validateSingleCommit: ${{ inputs.validateSingleCommit }}
+      checkLabels: ${{ inputs.checkLabels }}
+    secrets: inherit
