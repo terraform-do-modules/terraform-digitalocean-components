@@ -2,6 +2,7 @@ name: PR Validation
 
 on:
   pull_request:
+    branches: [feat/version-test]
     types:
       - opened
       - edited
