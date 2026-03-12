@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   complete-example:
-    uses: clouddrove/github-shared-workflows/.github/workflows/stf-checks.yml@74df2ef7327ca06f5f7ee4cc7727a6e8b87f0959
+    uses: clouddrove/github-shared-workflows/.github/workflows/stf-checks.yml@3f5f04aeaf2695df870f7e3fff6647ea685b8323
     with:
       provider: digitalocean
       working_directory: ./terraform/sandbox/blr1/
