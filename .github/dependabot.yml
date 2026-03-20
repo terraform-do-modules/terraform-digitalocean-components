@@ -54,7 +54,7 @@ updates:
       - "approvers"
     # Allow up to 3 open pull requests for pip dependencies
     open-pull-requests-limit: 3
-  
+
   - package-ecosystem: "terraform" # See documentation for possible values
     directory: "terraform/_modules/container-registry" # Location of package manifests
     schedule:
