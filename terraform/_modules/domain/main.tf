@@ -3,7 +3,7 @@
 ##------------------------------------------------
 module "domain" {
   source  = "terraform-do-modules/domain/digitalocean"
-  version = "1.0.4"
+  version = "1.0.5"
   name    = var.name
   enabled = var.enabled
   records = var.records
