@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 jobs:
   complete-do-module:
-    uses: clouddrove/github-shared-workflows/.github/workflows/stf-checks.yml@3f5f04aeaf2695df870f7e3fff6647ea685b8323 # pinned to latest
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@master
     with:
       provider: none
       working_directory: './terraform/sandbox/blr1/'
@@ -14,6 +14,6 @@ jobs:
 
 # Separate job for TFlint workflow call
   tf-lint:
-    uses: clouddrove/github-shared-workflows/.github/workflows/tf-lint.yml@3f5f04aeaf2695df870f7e3fff6647ea685b8323 # pinned to latest
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-lint.yml@master
     secrets:
       GITHUB: ${{ secrets.GITHUB }}
