@@ -8,8 +8,9 @@ jobs:
   complete-do-module:
     uses: clouddrove/github-shared-workflows/.github/workflows/stf-checks.yml@3f5f04aeaf2695df870f7e3fff6647ea685b8323 # pinned to latest
     with:
-      provider: digitalocean
+      provider: none
       working_directory: './terraform/sandbox/blr1/'
+      provider: none
 
 # Separate job for TFlint workflow call
   tf-lint:
