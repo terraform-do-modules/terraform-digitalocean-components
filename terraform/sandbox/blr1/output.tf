@@ -6,7 +6,7 @@ output "cdn_id" {
   value = module.cdn.id
 }
 
-## certificate 
+## certificate
 
 output "certificate_id" {
   value       = module.lets_encrypt_certificate.id
@@ -209,7 +209,7 @@ output "kubernetes_endpoint" {
   description = "The base URL of the API server on the Kubernetes master node."
 }
 
-#loadbalancer 
+#loadbalancer
 output "loadbalancer_id" {
   value       = module.load-balancer.id
   description = "The ID of the Load Balancer."
