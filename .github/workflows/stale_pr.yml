@@ -8,6 +8,7 @@ on:
 jobs:
   call-shared-stale:
     uses: clouddrove/github-shared-workflows/.github/workflows/pr-stale.yml@v2
+
     with:
       days-before-issue-stale: 30
       days-before-pr-stale: 30
