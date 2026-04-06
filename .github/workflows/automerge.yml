@@ -1,13 +1,16 @@
 name: Auto merge
+
 on:
   pull_request:
+
 permissions:
   contents: write
   checks: read
   pull-requests: write
+
 jobs:
   auto-merge:
-    uses: clouddrove/github-shared-workflows/.github/workflows/auto_merge.yml@3f5f04aeaf2695df870f7e3fff6647ea685b8323 # pinned to latest
+    uses: clouddrove/github-shared-workflows/.github/workflows/pr-auto-merge.yml@v2
     with:
       azure_cloud: true
       tfchecks_azure: '["tf-lint / tflint"]'
