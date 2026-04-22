@@ -2,12 +2,12 @@ name: Mark or close stale issues and PRs
 
 on:
   schedule:
-    - cron: '0 0 * * 5'  # Runs every Friday midnight
+    - cron: '0 0 * * 5'
   workflow_dispatch:
 
 jobs:
   call-shared-stale:
-    uses: clouddrove/github-shared-workflows/.github/workflows/stale_pr.yml@38cd6ebc01e8b5b14ac9a90a5579d04b02e79099 # pinned to latest
+    uses: clouddrove/github-shared-workflows/.github/workflows/pr-stale.yml@v2
     with:
       days-before-issue-stale: 30
       days-before-pr-stale: 30
