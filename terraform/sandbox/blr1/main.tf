@@ -7,7 +7,7 @@ locals {
 }
 
 module "vpc" {
-  source      = "./../../_modules/vpc"
+  source      = "./../../modules/vpc"
   name        = local.name
   environment = local.environment
   region      = local.region
@@ -15,7 +15,7 @@ module "vpc" {
 }
 
 module "spaces" {
-  source = "./../../_modules/spaces"
+  source = "./../../modules/spaces"
 
   name          = "space-component"
   acl           = "private"
@@ -27,7 +27,7 @@ module "spaces" {
 ## Droplet module call
 ##------------------------------------------------
 module "droplet" {
-  source      = "./../../_modules/droplet"
+  source      = "./../../modules/droplet"
   name        = local.name
   environment = local.environment
   region      = local.region
@@ -52,7 +52,7 @@ module "droplet" {
 # ## Firewall module call
 # ##------------------------------------------------
 module "firewall" {
-  source        = "./../../_modules/firewall"
+  source        = "./../../modules/firewall"
   name          = local.name
   environment   = local.environment
   allowed_ip    = ["0.0.0.0/0"]
@@ -64,7 +64,7 @@ module "firewall" {
 # ## Load Balancer module call
 # ##------------------------------------------------
 module "load-balancer" {
-  source      = "./../../_modules/loadbalancer"
+  source      = "./../../modules/loadbalancer"
   name        = local.name
   environment = local.environment
   region      = local.region
@@ -118,7 +118,7 @@ module "load-balancer" {
 ## container registry module call
 ##------------------------------------------------
 module "container-registry" {
-  source                 = "./../../_modules/container-registry"
+  source                 = "./../../modules/container-registry"
   name                   = local.name
   environment            = local.environment
   subscription_tier_slug = "starter"
@@ -128,7 +128,7 @@ module "container-registry" {
 ## Kubernetes module call
 ##------------------------------------------------
 module "k8s" {
-  source          = "./../../_modules/kubernetes"
+  source          = "./../../modules/kubernetes"
   name            = local.name
   environment     = local.environment
   region          = local.region
@@ -176,7 +176,7 @@ module "k8s" {
 ## Domain module call
 ##------------------------------------------------
 module "domain" {
-  source = "./../../_modules/domain"
+  source = "./../../modules/domain"
   name   = "component.test.com"
 
   records = {
@@ -197,7 +197,7 @@ module "domain" {
 ## alert module call.
 ##------------------------------------------------
 module "uptime-alert" {
-  source      = "./../../_modules/monitoring"
+  source      = "./../../modules/monitoring"
   name        = "app"
   environment = "test"
   target_url  = ["http://test.do.clouddrove.ca/", "https://test2.do.clouddrove.ca/"]
@@ -223,7 +223,7 @@ module "uptime-alert" {
 ## lets_encrypt certificate module call
 ##------------------------------------------------
 module "lets_encrypt_certificate" {
-  source           = "./../../_modules/certificate"
+  source           = "./../../modules/certificate"
   certificate_name = "test"
   domain_names     = ["do.clouddrove.ca"]
 }
@@ -233,7 +233,7 @@ module "lets_encrypt_certificate" {
 ##------------------------------------------------
 module "cdn" {
   depends_on       = [module.spaces]
-  source           = "./../../_modules/cdn"
+  source           = "./../../modules/cdn"
   origin           = module.spaces.bucket_domain_name
   ttl              = 3600
   custom_domain    = ""
@@ -244,7 +244,7 @@ module "cdn" {
 ## mysql database cluster module call
 ##------------------------------------------------
 module "mysql" {
-  source                       = "./../../_modules/database"
+  source                       = "./../../modules/database"
   name                         = local.name
   environment                  = local.environment
   region                       = local.region
@@ -280,7 +280,7 @@ module "mysql" {
 ## app module call
 ##------------------------------------------------
 module "app" {
-  source = "./../../_modules/app"
+  source = "./../../modules/app"
   spec = [{
     name    = "test"
     enabled = true
