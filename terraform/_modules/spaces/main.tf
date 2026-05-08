@@ -3,7 +3,7 @@
 ##------------------------------------------------
 module "spaces" {
   source        = "terraform-do-modules/spaces/digitalocean"
-  version       = "1.0.6"
+  version       = "1.0.7"
   name          = var.name
   environment   = var.environment
   acl           = var.acl
