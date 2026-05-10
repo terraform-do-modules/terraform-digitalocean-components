@@ -22,7 +22,7 @@ locals {
 ## VPC
 ##------------------------------------------------
 module "vpc" {
-  source      = "../../terraform/_modules/vpc"
+  source      = "../../terraform/modules/vpc"
   name        = local.name
   environment = local.environment
   region      = local.region
@@ -33,7 +33,7 @@ module "vpc" {
 ## Spaces (Object Storage)
 ##------------------------------------------------
 module "spaces" {
-  source        = "../../terraform/_modules/spaces"
+  source        = "../../terraform/modules/spaces"
   name          = local.name
   environment   = local.environment
   region        = "nyc3"
@@ -45,7 +45,7 @@ module "spaces" {
 ## Droplet
 ##------------------------------------------------
 module "droplet" {
-  source      = "../../terraform/_modules/droplet"
+  source      = "../../terraform/modules/droplet"
   name        = local.name
   environment = local.environment
   region      = local.region
@@ -70,7 +70,7 @@ module "droplet" {
 ## Firewall
 ##------------------------------------------------
 module "firewall" {
-  source        = "../../terraform/_modules/firewall"
+  source        = "../../terraform/modules/firewall"
   name          = local.name
   environment   = local.environment
   allowed_ip    = ["0.0.0.0/0"]
@@ -82,7 +82,7 @@ module "firewall" {
 ## Load Balancer
 ##------------------------------------------------
 module "load_balancer" {
-  source      = "../../terraform/_modules/loadbalancer"
+  source      = "../../terraform/modules/loadbalancer"
   name        = local.name
   environment = local.environment
   region      = local.region
@@ -116,7 +116,7 @@ module "load_balancer" {
 ## Container Registry
 ##------------------------------------------------
 module "container_registry" {
-  source                 = "../../terraform/_modules/container-registry"
+  source                 = "../../terraform/modules/container-registry"
   name                   = local.name
   environment            = local.environment
   subscription_tier_slug = "starter"
@@ -126,7 +126,7 @@ module "container_registry" {
 ## Kubernetes
 ##------------------------------------------------
 module "kubernetes" {
-  source          = "../../terraform/_modules/kubernetes"
+  source          = "../../terraform/modules/kubernetes"
   name            = local.name
   environment     = local.environment
   region          = local.region
@@ -160,7 +160,7 @@ module "kubernetes" {
 ## Domain & DNS Records
 ##------------------------------------------------
 module "domain" {
-  source = "../../terraform/_modules/domain"
+  source = "../../terraform/modules/domain"
   name   = var.domain_name
 
   records = {
@@ -182,7 +182,7 @@ module "domain" {
 ##------------------------------------------------
 module "cdn" {
   depends_on = [module.spaces]
-  source     = "../../terraform/_modules/cdn"
+  source     = "../../terraform/modules/cdn"
   origin     = module.spaces.bucket_domain_name
   ttl        = 3600
 }
@@ -191,7 +191,7 @@ module "cdn" {
 ## Let's Encrypt Certificate
 ##------------------------------------------------
 module "certificate" {
-  source           = "../../terraform/_modules/certificate"
+  source           = "../../terraform/modules/certificate"
   certificate_name = local.name
   domain_names     = var.certificate_domain_names
 }
@@ -200,7 +200,7 @@ module "certificate" {
 ## MySQL Database Cluster
 ##------------------------------------------------
 module "database" {
-  source                       = "../../terraform/_modules/database"
+  source                       = "../../terraform/modules/database"
   name                         = local.name
   environment                  = local.environment
   region                       = local.region
@@ -231,7 +231,7 @@ module "database" {
 ## Monitoring / Uptime Alerts
 ##------------------------------------------------
 module "monitoring" {
-  source      = "../../terraform/_modules/monitoring"
+  source      = "../../terraform/modules/monitoring"
   name        = local.name
   environment = local.environment
   target_url  = ["https://${var.domain_name}/"]

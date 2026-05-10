@@ -1,0 +1,69 @@
+name: Terraform DigitalOcean Components
+
+intro: |-
+  Streamline operations, automate workflows, improve team collaboration, and deploy with confidence using our complete DevOps toolkit.
+
+badges_text: "Latest Release | tfsec | License | Changelog"
+
+about: |-
+  Terraform components repository to provision and manage centralized infrastructure on DigitalOcean using multiple modules together.
+
+
+license: "APACHE"
+
+github_repo: terraform-do-modules/terraform-digitalocean-components
+
+badges:
+  - name: "Terraform"
+    image: "https://img.shields.io/badge/Terraform-v1.6-green"
+    url: "https://www.terraform.io"
+
+  - name: "OpenTofu"
+    image: "https://img.shields.io/badge/OpenTofu-v1.6-purple"
+    url: "https://opentofu.org"
+
+  - name: "Licence"
+    image: "https://img.shields.io/badge/License-APACHE-blue.svg"
+    url: "LICENSE.md"
+
+prerequesties:
+  - name: Terraform >= 1.6.0
+    url: https://developer.hashicorp.com/terraform/install
+  - name: OpenTofu >= 1.6.0
+    url: https://opentofu.org/docs/intro/install/
+
+description: |-
+  Terraform components repository to provision and manage centralized infrastructure on DigitalOcean using multiple modules together.
+
+
+usage: |-
+  ## Execution Steps
+
+  Run the following commands from the sandbox environment directory:
+
+  ```bash
+  cd terraform/sandbox/blr1
+  terraform init
+  terraform plan
+  terraform apply
+  terraform destroy
+  ```
+
+  ### Deploy with OpenTofu
+  ```bash
+  tofu init
+  tofu plan
+  tofu apply
+  ```
+
+  ### Deploy with Terragrunt
+  See [`examples/terragrunt/terragrunt.hcl`](./examples/terragrunt/terragrunt.hcl) for a complete example using DigitalOcean Spaces as remote state.
+  ```bash
+  export DIGITALOCEAN_TOKEN="<your-token>"
+  export SPACES_ACCESS_KEY_ID="<your-spaces-key>"
+  export SPACES_SECRET_ACCESS_KEY="<your-spaces-secret>"
+  cd examples/terragrunt
+  terragrunt init
+  terragrunt plan
+  terragrunt apply
+  ```
