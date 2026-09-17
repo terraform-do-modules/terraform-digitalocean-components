@@ -1,3 +1,11 @@
+## [v1.0.4] - 2026-09-17
+### :bug: Bug Fixes
+- [`68da45f`](https://github.com/terraform-do-modules/terraform-digitalocean-components/commit/68da45ffd66695b4c0634b93560ad7519b8b389c) - updated the automerge.yml *(commit by [@karan-cd](https://github.com/karan-cd))*
+
+### :wrench: Chores
+- [`1bbba58`](https://github.com/terraform-do-modules/terraform-digitalocean-components/commit/1bbba58e6115504e5162587e85e32f6d2d0beac5) - bump terraform.yml to 2.1.3 (Foundry: FOU-57) *(PR [#134](https://github.com/terraform-do-modules/terraform-digitalocean-components/pull/134) by [@clouddrove-ci](https://github.com/clouddrove-ci))*
+
+
 ## [1.0.2] - 2026-02-25
 
 ### 📚 Documentation
@@ -40,3 +48,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   monitoring, spaces, app
 - Sandbox environment under `terraform/sandbox/blr1/`
 - `terraform.yml` workflow for manual apply/destroy with approval gating
+[v1.0.4]: https://github.com/terraform-do-modules/terraform-digitalocean-components/compare/v1.0.3...v1.0.4
