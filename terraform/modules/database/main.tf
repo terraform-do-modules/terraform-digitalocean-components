@@ -3,7 +3,7 @@
 ##------------------------------------------------
 module "mysql" {
   source                       = "terraform-do-modules/database/digitalocean"
-  version                      = "1.0.1"
+  version                      = "1.0.7"
   name                         = var.name
   environment                  = var.environment
   enabled                      = var.enabled
